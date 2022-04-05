@@ -1,0 +1,6 @@
+ /* CSS Document */
+.hfont{font-family:"Times New Roman", Times, serif;font-size:18px;color:#FF66FF}
+.sfont{font-family:Georgia, "Times New Roman", Times, serif;font-size:14px;color:#9933FF}
+.nFont{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#0000CC}
+.cFont{font-family:"Courier New", Courier, mono;font-size:12px;color:#9900FF; text-decoration:none}
+.box{border-bottom-style:solid;border-top-style:solid;border-left-style:solid;border-right-style:solid}
