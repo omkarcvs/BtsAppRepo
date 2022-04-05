@@ -1,5 +1,5 @@
 package mypack;
 
-public class Terst {
+public class Terst {  
 
 }
