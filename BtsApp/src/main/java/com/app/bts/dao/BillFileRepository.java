@@ -11,8 +11,13 @@ import com.app.bts.entity.BillFileEntity;
 
 @Repository
 public interface BillFileRepository  extends JpaRepository<BillFileEntity, Long>{
-	@Query(value = "SELECT BILL_TRACK_REF_NO_SEQ.nextval FROM dual", nativeQuery =true)
+
+	/*@Query(value = "SELECT BILL_TRACK_REF_NO_SEQ.nextval FROM dual", nativeQuery =true)
 	Long getBillTrackRefNoSeq();
+	*/
+	@Query(value = "SELECT max(bill_track_ref_no_seq) FROM bts_db.bill_track_ref_no_tbl;", nativeQuery =true)
+	Long getBillTrackRefNoSeq();
+	
 	
 	/* Select * from BillFile where billStatus=? */
 	List<BillFileEntity> findByBillStatus(int billStatus);

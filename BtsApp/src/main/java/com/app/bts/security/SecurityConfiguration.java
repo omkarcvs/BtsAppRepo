@@ -41,8 +41,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
+	//@Override
+	protected void configure_test(HttpSecurity http) throws Exception {
+		http.httpBasic().and().authorizeRequests().anyRequest().authenticated();
+		http.csrf().disable();
+	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		
+		
 		http.authorizeRequests().antMatchers("/", "/list")		
 				.access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")		
 			  
@@ -69,7 +77,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			    .access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
 				*/
 				/*Security for BTS bill tracking system */
-				.antMatchers("/home","createDakBill", "/createBill", "/dispatchBill", "/receiveBill", "/closeBill", "/trackBill","/loadDakData","/loadForDispatcherData","/loadForReceiverData","/loadForClosingData", "/bts/api/ajaxrest/**")		
+				.antMatchers("/home","createDakBill", "/createBill", "/dispatchBill", "/receiveBill", "/closeBill", "/trackBill","/loadDakData","/loadForDispatcherData","/loadForReceiverData","/loadForClosingData", "/bts/api/ajaxrest/**","/pay","/bts/api/ajaxrest/create_order","/bts/api/ajaxrest/load_order")		
 				.access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")	
 				
 				.antMatchers("/error")		
@@ -80,6 +88,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()
 				.rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
 				.tokenValiditySeconds(86400).and().csrf().and().exceptionHandling().accessDeniedPage("/Access_Denied");
+		
+		        
 		
 	/*	
 	    .antMatchers("/add/**")

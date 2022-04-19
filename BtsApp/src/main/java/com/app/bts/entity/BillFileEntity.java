@@ -23,7 +23,7 @@ public class BillFileEntity {
 	@Column(name="BILL_FILE_SEQ")
 	private Long fileSeq;	
 	
-	@Column(name="BILL_TRACK_REF_NO")
+	@Column(name="BILL_TRACK_REF_NO",unique=true)
 	private Long billTrackRefNo;
 	
 	/*used for DAK */

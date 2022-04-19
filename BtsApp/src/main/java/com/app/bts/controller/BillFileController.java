@@ -24,6 +24,8 @@ import com.app.bts.entity.BillTrackEntity;
 import com.app.bts.entity.DepartmentEntity;
 import com.app.bts.entity.user.User;
 import com.app.bts.service.BillFileService;
+import com.app.bts.service.BillTrackRefNoGeneratorService;
+import com.app.bts.service.BillTrackRefNoGeneratorServiceImp;
 import com.app.bts.service.BillTrackService;
 import com.app.bts.service.DepartmentService;
 import com.app.bts.service.user.UserService;
@@ -47,6 +49,9 @@ public class BillFileController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired 
+	BillTrackRefNoGeneratorService seq;
 	                
 	Logger  logger= LoggerFactory.getLogger(BillFileController.class);
 	
@@ -101,6 +106,9 @@ public class BillFileController {
 			 
 			 billFileEntity.setCreatedBy(getPrincipal());
 			 billFileEntity.setBillStatus(0);
+			 
+			 seq.save();
+			 
 			 Long dakSavedRefNo=billFileService.save(billFileEntity);
 			 String successMsg="DAK REF NO: "+dakSavedRefNo;
 			 model.put("successMsg", successMsg);/*dakSavedRefNo*/
